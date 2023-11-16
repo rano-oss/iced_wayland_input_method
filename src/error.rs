@@ -1,5 +1,4 @@
-use crate::futures::futures;
-use crate::graphics;
+use iced_futures::futures;
 
 /// An error that occurred while running an application.
 #[derive(Debug, thiserror::Error)]
@@ -10,14 +9,14 @@ pub enum Error {
 
     /// The application window could not be created.
     #[error("the application window could not be created")]
-    WindowCreationFailed(winit::error::OsError),
+    WindowCreationFailed(Box<dyn std::error::Error + Send + Sync>),
 
     /// The application graphics context could not be created.
     #[error("the application graphics context could not be created")]
-    GraphicsCreationFailed(graphics::Error),
+    GraphicsCreationFailed(iced_graphics::Error),
 }
 
-impl From<graphics::Error> for Error {
+impl From<iced_graphics::Error> for Error {
     fn from(error: iced_graphics::Error) -> Error {
         Error::GraphicsCreationFailed(error)
     }

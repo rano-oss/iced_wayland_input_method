@@ -1,7 +1,7 @@
 //! Access the native system.
-use crate::graphics::compositor;
 use crate::runtime::command::{self, Command};
 use crate::runtime::system::{Action, Information};
+use iced_graphics::compositor;
 
 /// Query for available system information.
 pub fn fetch_information<Message>(
@@ -23,7 +23,7 @@ pub(crate) fn information(
 
     let memory_used = sysinfo::get_current_pid()
         .and_then(|pid| system.process(pid).ok_or("Process not found"))
-        .map(ProcessExt::memory)
+        .map(|process| process.memory())
         .ok();
 
     Information {
