@@ -1,16 +1,12 @@
 [package]
-name = "iced_sctk"
+name = "iced_wayland_input_method"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [features]
-debug = ["iced_runtime/debug"]
 system = ["sysinfo"]
 application = []
 multi_window = []
-a11y = ["iced_accessibility", "iced_runtime/a11y"]
 default = ["calloop", "xkbcommon"]
 calloop = []
 xkbcommon = ["dep:xkbcommon"]
@@ -28,8 +24,7 @@ futures = "0.3"
 wayland-backend = {version = "0.3.1", features = ["client_system"]}
 float-cmp = "0.9"
 smithay-clipboard = "0.6"
-accesskit = { version = "0.8.1", optional = true }
-accesskit_unix = { version = "0.1.1", optional = true }
+accesskit = { version = "0.12", optional = true }
 itertools = "0.10"
 bytemuck = { version = "1.14.0", optional = true }
 xkbcommon = { version = "0.6", optional = true, features = ["wayland"] }
@@ -40,9 +35,4 @@ iced_style = "0.9"
 iced_graphics = "0.9"
 iced_futures = "0.7"
 sysinfo = { version = "0.28", optional = true }
-
-# [dependencies.iced_accessibility]
-# version = "0.1.0"
-# path = "../accessibility"
-# optional = true
-# features = ["accesskit_unix"]
+accesskit_unix = { version = "0.6", optional = true }
