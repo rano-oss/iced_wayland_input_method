@@ -1,0 +1,48 @@
+[package]
+name = "iced_sctk"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+debug = ["iced_runtime/debug"]
+system = ["sysinfo"]
+application = []
+multi_window = []
+a11y = ["iced_accessibility", "iced_runtime/a11y"]
+default = ["calloop", "xkbcommon"]
+calloop = []
+xkbcommon = ["dep:xkbcommon"]
+
+[dependencies]
+log = "0.4"
+tracing = "0.1"
+thiserror = "1.0"
+sctk = { package = "smithay-client-toolkit", git = "https://github.com/smithay/client-toolkit", rev = "dc8c4a0" }
+wayland-protocols = { version = "0.31.0", features = [ "staging"]}
+wayland-protocols-misc = { version = "0.2.0", features = ["client"] }
+raw-window-handle = "0.5"
+enum-repr = "0.2"
+futures = "0.3"
+wayland-backend = {version = "0.3.1", features = ["client_system"]}
+float-cmp = "0.9"
+smithay-clipboard = "0.6"
+accesskit = { version = "0.8.1", optional = true }
+accesskit_unix = { version = "0.1.1", optional = true }
+itertools = "0.10"
+bytemuck = { version = "1.14.0", optional = true }
+xkbcommon = { version = "0.6", optional = true, features = ["wayland"] }
+xkeysym = "0.2.0"
+lazy_static = "1.4.0"
+iced_runtime = "0.1"
+iced_style = "0.9"
+iced_graphics = "0.9"
+iced_futures = "0.7"
+sysinfo = { version = "0.28", optional = true }
+
+# [dependencies.iced_accessibility]
+# version = "0.1.0"
+# path = "../accessibility"
+# optional = true
+# features = ["accesskit_unix"]
